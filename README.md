@@ -1,9 +1,12 @@
 # SIH
 
-to clone do:
+# Clone repo
 git clone https://github.com/Klath123/SIH.git
-
-to run do:
 cd frontend
-npm i
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
+
