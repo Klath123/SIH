@@ -1,23 +1,44 @@
-import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
-import { BrowserRouter as Routerz_Hehe, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
-function App() {
+// 🔒 ProtectedRoute Component
+function ProtectedRoute({ children }) {
+  const { user, loading } = useAuth();
 
-  return (
-    <Routerz_Hehe>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/auth" element={<Auth />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-        
-      </Routes>
-    </Routerz_Hehe>
-  )
+  if (loading) {
+    return <p className="text-center mt-10">Checking auth...</p>;
+  }
+
+  if (!user) {
+    return <Navigate to="/auth" replace />;
+  }
+
+  return children;
 }
 
-export default App
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/auth" element={<Auth />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
+}
+
+export default App;
