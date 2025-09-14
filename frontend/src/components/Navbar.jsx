@@ -40,12 +40,28 @@ function Navbar() {
         {/* Left: Logo + Links */}
         <NavigationMenu>
           <NavigationMenuList className="flex gap-4 items-center">
-           
 
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
                 <Link to="/" className={getLinkClass("/")}>
+                  Home
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+           
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link to="/dashboard" className={getLinkClass("/dashboard")}>
                   Dashboard
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link to="/map" className={getLinkClass("/map")}>
+                  Map
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>

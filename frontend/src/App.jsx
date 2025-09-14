@@ -3,6 +3,8 @@ import Navbar from './components/Navbar'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Auth from './pages/Auth';
 import Dashboard from './pages/Dashboard';
+import Map from './pages/Map';
+import Home from './pages/Home';
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
 // 🔒 ProtectedRoute Component
@@ -27,7 +29,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route
-            path="/"
+            path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
@@ -35,6 +37,9 @@ function App() {
             }
           />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </AuthProvider>
