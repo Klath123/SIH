@@ -44,7 +44,7 @@ function Navbar() {
 
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link to="/" className={getLinkClass("/dashboard")}>
+                <Link to="/" className={getLinkClass("/")}>
                   Dashboard
                 </Link>
               </NavigationMenuLink>
