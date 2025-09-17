@@ -1,5 +1,5 @@
 import express from "express";
-import { mintPassport } from "../services/passportService.js";
+import { mintPassportOnChain } from "../services/blockchain.js"; // Changed import
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post("/mint", async (req, res) => {
       return res.status(400).json({ error: "userWallet is required" });
     }
 
-    const result = await mintPassport(userWallet, tokenURI);
+    const result = await mintPassportOnChain(userWallet, tokenURI); // Use the new function
     res.json(result);
   } catch (err) {
     console.error("mint error:", err);

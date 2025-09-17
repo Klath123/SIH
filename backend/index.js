@@ -3,6 +3,10 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import passportRoutes from "./routes/passportRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import qrRoutes from "./routes/qrRoutes.js";
+import passportQRRoutes from "./routes/passportQRRoutes.js";
+
 
 dotenv.config();
 
@@ -17,6 +21,12 @@ app.get("/", (req, res) => {
 
 // routes
 app.use("/api/passport", passportRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/qr", qrRoutes);
+app.use("/api/passport", passportQRRoutes);
+
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Backend listening on http://localhost:${PORT}`));
@@ -31,7 +41,7 @@ bash:
   -d '{
     "userId": "demoUser1",
     "userWallet": "0xab8483f64d9c6d1ecf9b849ae677dd3315835cb2",
-    "tokenURI": "ipfs://QmYwAPJzv5CZsnAzt8auV2VZ9d8dZ3M4T7Cj5tP4gF2kQp"
+    "tokenURI": "ipfs://bafkreiga5uml4r5bdgttk2sdx6qqnucmdxqe6kbsleczhd7cuwtm57z54q"
   }'
 
 
@@ -46,5 +56,29 @@ bash:
     "gasUsed": "146854"
   }
 }
+
+
+
+
+
+
+
+
+check register:
+curl -X POST http://localhost:5000/api/auth/register \
+ -H "Content-Type: application/json" \
+ -d '{"userId":"demoUser1"}'
+
+ output:
+ {"success":true,"userId":"demoUser1","walletAddress":"0x9eBD6734e31a46A6feDBC336a9E85F17469cbA9c","isValidated":true} 
+
+
+ check login:
+ curl -X POST http://localhost:5000/api/auth/login \
+ -H "Content-Type: application/json" \
+ -d '{"userId":"demoUser1"}'
+
+ output:
+ {"success":true,"userId":"demoUser1","walletAddress":"0x9eBD6734e31a46A6feDBC336a9E85
 
  */
