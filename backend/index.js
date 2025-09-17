@@ -6,13 +6,14 @@ import passportRoutes from "./routes/passportRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import qrRoutes from "./routes/qrRoutes.js";
 import passportQRRoutes from "./routes/passportQRRoutes.js";
-
+import ipfsRoutes from "./routes/ipfsRoutes.js";
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // health check
 app.get("/", (req, res) => {
@@ -24,7 +25,7 @@ app.use("/api/passport", passportRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/qr", qrRoutes);
 app.use("/api/passport", passportQRRoutes);
-
+app.use("/api/ipfs", ipfsRoutes);
 
 
 
