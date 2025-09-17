@@ -127,6 +127,62 @@ export const mintPassport = async (req, res) => {
 };
 
 // Alternative: If you want to keep the original function that accepts tokenURI directly
+// export const mintPassportWithExistingURI = async (req, res) => {
+//   try {
+//     const { userId, userWallet, tokenURI } = req.body;
+
+//     if (!userId || !userWallet || !tokenURI) {
+//       return res.status(400).json({ error: "userId, userWallet, and tokenURI are required" });
+//     }
+
+//     // 1. Mint on blockchain
+//     const result = await mintPassportOnChain(userWallet, tokenURI);
+
+//     // 2. Secure payload
+//     const expiry = Date.now() + 1000 * 60 * 60 * 24 * 30; // valid 30 days
+//     const payload = { tokenId: result.tokenId, userId, expiry };
+
+//     // 3. Sign payload (backend's private key)
+//     const privateKey = process.env.PRIVATE_KEY;
+//     const signer = new ethers.Wallet(privateKey);
+//     const message = JSON.stringify(payload);
+//     const signature = await signer.signMessage(message);
+
+//     const securePayload = { ...payload, signature };
+
+//     // 4. Generate QR
+//     const qrData = JSON.stringify(securePayload);
+//     const qrImageBuffer = await QRCode.toBuffer(qrData);
+
+//     // 5. Upload QR to Firebase Storage
+//     const bucket = getStorage().bucket(process.env.FIREBASE_STORAGE_BUCKET);
+//     const fileName = `qrcodes/${userId}_${result.tokenId}_${uuidv4()}.png`;
+//     const file = bucket.file(fileName);
+
+//     await file.save(qrImageBuffer, {
+//       metadata: {
+//         contentType: "image/png",
+//         metadata: { firebaseStorageDownloadTokens: uuidv4() },
+//       },
+//     });
+
+//     const qrUrl = `https://firebasestorage.googleapis.com/v0/b/${
+//       process.env.FIREBASE_STORAGE_BUCKET
+//     }/o/${encodeURIComponent(fileName)}?alt=media`;
+
+//     // 6. Respond
+//     res.json({
+//       success: true,
+//       txHash: result.txHash,
+//       tokenId: result.tokenId,
+//       qrUrl,
+//       payload: securePayload,
+//     });
+//   } catch (err) {
+//     console.error("Mint error:", err);
+//     res.status(500).json({ success: false, error: err.message });
+//   }
+// };
 export const mintPassportWithExistingURI = async (req, res) => {
   try {
     const { userId, userWallet, tokenURI } = req.body;
@@ -153,29 +209,17 @@ export const mintPassportWithExistingURI = async (req, res) => {
     // 4. Generate QR
     const qrData = JSON.stringify(securePayload);
     const qrImageBuffer = await QRCode.toBuffer(qrData);
+    
+    // 5. Convert QR buffer to base64 data URL (instead of uploading to Firebase)
+    const qrBase64 = qrImageBuffer.toString('base64');
+    const qrDataUrl = `data:image/png;base64,${qrBase64}`;
 
-    // 5. Upload QR to Firebase Storage
-    const bucket = getStorage().bucket(process.env.FIREBASE_STORAGE_BUCKET);
-    const fileName = `qrcodes/${userId}_${result.tokenId}_${uuidv4()}.png`;
-    const file = bucket.file(fileName);
-
-    await file.save(qrImageBuffer, {
-      metadata: {
-        contentType: "image/png",
-        metadata: { firebaseStorageDownloadTokens: uuidv4() },
-      },
-    });
-
-    const qrUrl = `https://firebasestorage.googleapis.com/v0/b/${
-      process.env.FIREBASE_STORAGE_BUCKET
-    }/o/${encodeURIComponent(fileName)}?alt=media`;
-
-    // 6. Respond
+    // 6. Respond with base64 QR code
     res.json({
       success: true,
       txHash: result.txHash,
       tokenId: result.tokenId,
-      qrUrl,
+      qrUrl: qrDataUrl, // Now a base64 data URL instead of Firebase URL
       payload: securePayload,
     });
   } catch (err) {
