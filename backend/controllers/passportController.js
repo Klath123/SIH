@@ -6,6 +6,7 @@ import { mintPassportOnChain } from "../services/blockchain.js";
 import { ethers } from "ethers";
 import { generatePassportMetadata } from "../services/metadataService.js";
 import { uploadJSONToIPFS, uploadImageToIPFS } from "../services/pinataService.js";
+import { db } from "../services/firebase.js";
 // import { generateHashedMetadata } from "../services/metadataService.js";
 
 // Complete minting flow: IPFS upload + Blockchain mint + QR generation
@@ -214,14 +215,23 @@ export const mintPassportWithExistingURI = async (req, res) => {
     const qrBase64 = qrImageBuffer.toString('base64');
     const qrDataUrl = `data:image/png;base64,${qrBase64}`;
 
-    // 6. Respond with base64 QR code
-    res.json({
+    /// 6. Prepare response object
+    const responseData = {
       success: true,
       txHash: result.txHash,
       tokenId: result.tokenId,
-      qrUrl: qrDataUrl, // Now a base64 data URL instead of Firebase URL
+      tokenURI,
+      qrUrl: qrDataUrl,
       payload: securePayload,
-    });
+      createdAt: new Date(),
+    };
+
+     // 7. Save response to Firestore under collection `NFT-minting-data`
+    await db.collection("NFT-minting-data").add(responseData);
+
+    // 8. Send response back
+    res.json(responseData);
+    
   } catch (err) {
     console.error("Mint error:", err);
     res.status(500).json({ success: false, error: err.message });

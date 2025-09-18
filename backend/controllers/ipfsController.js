@@ -1,5 +1,6 @@
 import { generatePassportMetadata } from '../services/metadataService.js';
 import { uploadJSONToIPFS, uploadImageToIPFS } from '../services/pinataService.js';
+import { db } from '../services/firebase.js';
 
 export const uploadPassportToIPFS = async (req, res) => {
   try {
@@ -69,6 +70,23 @@ export const uploadPassportToIPFS = async (req, res) => {
       imageIpfsUri
     });
 
+     // 4. Store in Firebase
+    const ipfsDataRef = db.collection('ipfs-data').doc(userId);
+    await ipfsDataRef.set({
+      userId,
+      tokenURI,
+      imageIpfsUri,
+      metadata,
+      createdAt: new Date()
+    });
+
+    const metadataRef = db.collection('metadata').doc(userId);
+    await metadataRef.set({
+      userId,
+      ...metadata,
+      createdAt: new Date()
+    });
+    
   } catch (error) {
     console.error('IPFS upload error:', error);
     res.status(500).json({ error: error.message });
