@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4732fb7a7cd4882d1cf05f3b5f587f8a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_4732fb7a7cd4882d1cf05f3b5f587f8a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4732fb7a7cd4882d1cf05f3b5f587f8a = L.map(
+                "map_4732fb7a7cd4882d1cf05f3b5f587f8a",
+                {
+                    center: [27.3389, 88.6065],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d2eebc0010ba22f0f0d5e584c059d13a = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d2eebc0010ba22f0f0d5e584c059d13a.addTo(map_4732fb7a7cd4882d1cf05f3b5f587f8a);
+        
+    
+            var circle_09f72e2d258cb8a1a504a302e56014e6 = L.circle(
+                [27.3389, 88.6065],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20000, "stroke": true, "weight": 3}
+            ).addTo(map_4732fb7a7cd4882d1cf05f3b5f587f8a);
+        
+    
+        var popup_cf81fdbc61c6440783e990ebd98cb677 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6973d83748e25b323b17769861ac12ca = $(`<div id="html_6973d83748e25b323b17769861ac12ca" style="width: 100.0%; height: 100.0%;">Safe Zone: 20 km Radius</div>`)[0];
+                popup_cf81fdbc61c6440783e990ebd98cb677.setContent(html_6973d83748e25b323b17769861ac12ca);
+            
+        
+
+        circle_09f72e2d258cb8a1a504a302e56014e6.bindPopup(popup_cf81fdbc61c6440783e990ebd98cb677)
+        ;
+
+        
+    
+    
+            var marker_f4e7f2ffc57021bd4fbf3fc0d579dafc = L.marker(
+                [27.9475, 88.3315],
+                {
+}
+            ).addTo(map_4732fb7a7cd4882d1cf05f3b5f587f8a);
+        
+    
+            var icon_fa8a1c76cb563092c96a6c00d7cf182e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8cc324bc07b15f6458511ad37b1dcbbc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9318263aea52e304de81b03629d1d5e6 = $(`<div id="html_9318263aea52e304de81b03629d1d5e6" style="width: 100.0%; height: 100.0%;">Dangerous Area: South Lhonak Lake</div>`)[0];
+                popup_8cc324bc07b15f6458511ad37b1dcbbc.setContent(html_9318263aea52e304de81b03629d1d5e6);
+            
+        
+
+        marker_f4e7f2ffc57021bd4fbf3fc0d579dafc.bindPopup(popup_8cc324bc07b15f6458511ad37b1dcbbc)
+        ;
+
+        
+    
+    
+                marker_f4e7f2ffc57021bd4fbf3fc0d579dafc.setIcon(icon_fa8a1c76cb563092c96a6c00d7cf182e);
+            
+    
+            var marker_e1e213d57a9d1aede11a04ca0f8fbe12 = L.marker(
+                [27.22, 88.602],
+                {
+}
+            ).addTo(map_4732fb7a7cd4882d1cf05f3b5f587f8a);
+        
+    
+            var icon_a771fc3b5bf6730dc2f0652dcbf93c70 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_577670982f3bffb355a635a313e56fb1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_153b702c8b93e528fa02ce926575577f = $(`<div id="html_153b702c8b93e528fa02ce926575577f" style="width: 100.0%; height: 100.0%;">Dangerous Area: Yangthang, Upper Rimbi</div>`)[0];
+                popup_577670982f3bffb355a635a313e56fb1.setContent(html_153b702c8b93e528fa02ce926575577f);
+            
+        
+
+        marker_e1e213d57a9d1aede11a04ca0f8fbe12.bindPopup(popup_577670982f3bffb355a635a313e56fb1)
+        ;
+
+        
+    
+    
+                marker_e1e213d57a9d1aede11a04ca0f8fbe12.setIcon(icon_a771fc3b5bf6730dc2f0652dcbf93c70);
+            
+    
+            var marker_d17e04276ef10dc257edeaa6bb0d08a2 = L.marker(
+                [27.345, 88.879],
+                {
+}
+            ).addTo(map_4732fb7a7cd4882d1cf05f3b5f587f8a);
+        
+    
+            var icon_d4357926cecdc4cb9a9ebf4faa45997a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2eb3d5f97e9f6bf261494e2feceb59be = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7b8273a63c3483f7721747f66ae83071 = $(`<div id="html_7b8273a63c3483f7721747f66ae83071" style="width: 100.0%; height: 100.0%;">Dangerous Area: Zuluk Pass</div>`)[0];
+                popup_2eb3d5f97e9f6bf261494e2feceb59be.setContent(html_7b8273a63c3483f7721747f66ae83071);
+            
+        
+
+        marker_d17e04276ef10dc257edeaa6bb0d08a2.bindPopup(popup_2eb3d5f97e9f6bf261494e2feceb59be)
+        ;
+
+        
+    
+    
+                marker_d17e04276ef10dc257edeaa6bb0d08a2.setIcon(icon_d4357926cecdc4cb9a9ebf4faa45997a);
+            
+    
+            var marker_ad5cf71199df4ef8e7f695dccb7ed74f = L.marker(
+                [27.4205, 88.9314],
+                {
+}
+            ).addTo(map_4732fb7a7cd4882d1cf05f3b5f587f8a);
+        
+    
+            var icon_92948ed86d559ff2a82f590f24975761 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1aae7589a3b06bcd183f8a436b9948b6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_35547d3ddd1225aab3a0ed90384425a6 = $(`<div id="html_35547d3ddd1225aab3a0ed90384425a6" style="width: 100.0%; height: 100.0%;">Dangerous Area: Nathula Pass</div>`)[0];
+                popup_1aae7589a3b06bcd183f8a436b9948b6.setContent(html_35547d3ddd1225aab3a0ed90384425a6);
+            
+        
+
+        marker_ad5cf71199df4ef8e7f695dccb7ed74f.bindPopup(popup_1aae7589a3b06bcd183f8a436b9948b6)
+        ;
+
+        
+    
+    
+                marker_ad5cf71199df4ef8e7f695dccb7ed74f.setIcon(icon_92948ed86d559ff2a82f590f24975761);
+            
+    
+            var marker_990393f931d3dd75c0527b4709b0eaad = L.marker(
+                [27.412, 88.957],
+                {
+}
+            ).addTo(map_4732fb7a7cd4882d1cf05f3b5f587f8a);
+        
+    
+            var icon_1191987a84e4510615d0ec47eaf44b0d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0feb6c653ff4472ce30f75296e19ab01 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a8533dff25582d3af4c315895905aa0e = $(`<div id="html_a8533dff25582d3af4c315895905aa0e" style="width: 100.0%; height: 100.0%;">Dangerous Area: Kupup Lake</div>`)[0];
+                popup_0feb6c653ff4472ce30f75296e19ab01.setContent(html_a8533dff25582d3af4c315895905aa0e);
+            
+        
+
+        marker_990393f931d3dd75c0527b4709b0eaad.bindPopup(popup_0feb6c653ff4472ce30f75296e19ab01)
+        ;
+
+        
+    
+    
+                marker_990393f931d3dd75c0527b4709b0eaad.setIcon(icon_1191987a84e4510615d0ec47eaf44b0d);
+            
+</script>
+</html>
